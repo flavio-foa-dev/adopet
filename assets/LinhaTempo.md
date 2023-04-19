@@ -11,9 +11,10 @@ sidtems de adocao de pets
 - [x] - criando a struct tutor
 - [x] - criando struct pet
 - [x] - criando struct abrigo
-- [] - criando banco de dados
-- [] - criando a conexao com o banco de dados
-- [] -
-- [] -
-- [] -
+- [x] - criando banco de dados
+- [x] - criando a conexao com o banco de dados
+- [x] - criando os models
+- [x] - criando as migrations
+- [] - criando os controlers
+- [] - criando crud users
 
