@@ -1,17 +1,26 @@
 package routes
 
 import (
+	"fmt"
+
 	"github.com/flavio-foa-dev/adopet/controllers"
 	"github.com/gin-gonic/gin"
 )
 
-func ConfigureRoutes(router *gin.Engine) *gin.Engine {
+func ConfigureRoutes() {
+	router := gin.Default()
+
 	main := router.Group("api/v1")
+	{
+		main.GET("/ok", controllers.ShowOKApi)
+	}
 	{
 		users := main.Group("users")
 		{
-			users.GET("/", controllers.ShowController)
+			users.GET("/", controllers.ShowPageHome)
 		}
 	}
-	return router
+
+	fmt.Println("Starting Server...")
+	router.Run(":8000")
 }
