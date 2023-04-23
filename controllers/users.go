@@ -38,7 +38,21 @@ func DeleteUser(c *gin.Context) {
 	var user models.User
 	id := c.Params.ByName("id")
 
-	database.DB.Delete(&user, id)
+	result := database.DB.Delete(&user, id)
+	if result.Error != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"success": false,
+			"error":   result.Error.Error(),
+		})
+		return
+	}
+	if result.RowsAffected == 0 {
+		c.JSON(http.StatusNoContent, gin.H{
+			"success": false,
+			"message": "User not exist",
+		})
+		return
+	}
 	c.JSON(http.StatusOK, gin.H{
 		"success": true,
 		"user":    id,
@@ -57,5 +71,9 @@ func ReativarUser(c *gin.Context) {
 	if result.RowsAffected == 0 {
 		c.JSON(http.StatusBadRequest, "user not found or already active")
 	}
-
+	c.JSON(http.StatusOK, gin.H{
+		"ativado": true,
+		"user":    user.Name,
+		"id":      id,
+	})
 }

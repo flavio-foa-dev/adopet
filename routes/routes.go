@@ -23,6 +23,18 @@ func ConfigureRoutes() {
 			users.DELETE("/:id", controllers.DeleteUser)
 		}
 	}
+	{
+		shelters := main.Group("shelters")
+		{
+			shelters.POST("/", controllers.CreateShelter)
+		}
+	}
+	{
+		pets := main.Group("pets")
+		{
+			pets.POST("/", controllers.CreatePets)
+		}
+	}
 
 	fmt.Println("Starting Server...")
 	router.Run(":8000")
