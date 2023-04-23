@@ -18,6 +18,21 @@ func ConfigureRoutes() {
 		users := main.Group("users")
 		{
 			users.GET("/", controllers.ShowPageHome)
+			users.POST("/", controllers.CreateUser)
+			users.PUT("/reativar/:id", controllers.ReativarUser)
+			users.DELETE("/:id", controllers.DeleteUser)
+		}
+	}
+	{
+		shelters := main.Group("shelters")
+		{
+			shelters.POST("/", controllers.CreateShelter)
+		}
+	}
+	{
+		pets := main.Group("pets")
+		{
+			pets.POST("/", controllers.CreatePets)
 		}
 	}
 
